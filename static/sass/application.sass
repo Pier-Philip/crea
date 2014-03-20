@@ -1,0 +1,199 @@
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+// COLORS
+$orange: #db8436
+$d-orange: #a85423
+
+
+// GREYS
+$l-grey: #f8f8f8
+$l-grey2: #e5e5e5
+$grey: #7d7d7d
+$d-grey: #404040
+$d-grey2: #292929
+
+
+// TYPOS
+$reg: "PT Sans Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+$regit: "PT Sans Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+$bold: "PT Sans Bold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+$boldit: "PT Sans Bold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+
+
+/* ==========================================================================
+   MIXINS
+   ========================================================================== */
+
+// FONT-SIZE
+@mixin fsize($sizeValue)
+    $remValue: ($sizeValue / 16)
+    $pxValue: $sizeValue
+    font-size: $pxValue + px
+    font-size: $remValue + em
+
+// LINE-HEIGHT
+@mixin lheight($sizeValue)
+    $remValue: ($sizeValue / 16)
+    $pxValue: $sizeValue
+    line-height: $pxValue + px
+    line-height: $remValue + em
+
+// TRANSITIONS
+@mixin transition($transition, $time, $easing)
+    -webkit-transition: $transition $time $easing
+    -moz-transition: $transition $time $easing
+    -ms-transition: $transition $time $easing
+    -o-transition: $transition $time $easing
+    transition: $transition $time $easing
+
+// TRANSFORMS
+@mixin transform($transform)
+    -webkit-transform: $transform
+    -moz-transform: $transform
+    -ms-transform: $transform
+    -o-transform: $transform
+    transform: $transform
+
+// BORDER RADIUS
+@mixin border-radius($radius)
+    -webkit-border-radius: $radius + px
+    -moz-border-radius: $radius + px
+    -khtml-border-radius: $radius + px
+    border-radius: $radius + px
+    background-clip: padding-box
+
+// CLEARFIX
+@mixin clearfix()
+    zoom: 1
+
+    &:before, &:after
+        content: "\0020" 
+        display: block 
+        height: 0 
+        overflow: hidden
+    &:after
+        clear: both
+
+@mixin inlineb()
+    display: inline-block
+    *display: inline
+    zoom: 1
+
+@mixin opacity($n)
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+($n*100)+")"
+    filter: alpha(opacity=($n*100))
+    opacity: $n
+
+@mixin bw($n)
+    filter: grayscale($n)
+    -webkit-filter: grayscale($n)
+    -moz-filter: grayscale($n)
+    -ms-filter: grayscale($n)
+    -o-filter: grayscale($n)
+    @include transform(translate3d(0,0,0))
+
+
+/* ==========================================================================
+   IMPORTS
+   ========================================================================== */
+
+@import "partials/typography"
+@import "partials/helpers"
+@import "partials/layout"
+@import "partials/modules"
+@import "partials/forms"
+
+
+/* ==========================================================================
+   GENERAL STYLES
+   ========================================================================== */
+
+*,
+*:before,
+*:after
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    *behavior: url(boxsizing.htc)
+
+html,
+button,
+input,
+select,
+textarea
+    color: #fff
+
+body
+    font-family: $reg
+    color: $d-grey
+    background-color: #ffffff
+    @include fsize(16)
+    @include lheight(24)
+    margin: 0
+    padding: 0
+    -webkit-font-smoothing: antialiased
+
+h1, h2, h3, h4, h5, h6
+    font-weight: normal
+    font-family: $bold
+
+h1, h2
+    color: $orange
+
+h1
+    @include fsize(36)
+    line-height: 1.2
+
+h2
+    @include fsize(20)
+    line-height: 1.2
+
+h3
+    @include fsize(18)
+    line-height: 1.3
+
+a
+    color: $orange
+    text-decoration: none
+    &:hover,
+    &:active
+        color: $d-orange
+        text-decoration: underline
+
+strong, b
+    font-weight: normal
+    font-family: $bold
+
+ul
+    padding: 0
+    margin: 0
+
+::-moz-selection
+    background: #b3d4fc
+    text-shadow: none
+
+::selection
+    background: #b3d4fc
+    text-shadow: none
+
+hr
+    display: block
+    height: 1px
+    border: 0
+    border-top: 1px solid #ccc
+    margin: 1em 0
+    padding: 0
+
+img
+    vertical-align: middle
+
+fieldset
+    border: 0
+    margin: 0
+    padding: 0
+
+textarea
+    resize: vertical
